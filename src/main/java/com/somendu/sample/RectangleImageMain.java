@@ -12,6 +12,8 @@ import java.io.IOException;
 public class RectangleImageMain {
 
 	/**
+	 * Main Method
+	 * 
 	 * @param args
 	 * @throws IOException
 	 */
