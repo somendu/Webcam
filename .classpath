@@ -27,10 +27,12 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/Java3D/1.6.0/lib/ext/j3dcore.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/Java3D/1.6.0/lib/ext/j3d-core-1.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/Java3D/1.6.0/lib/ext/j3d-core-utils-1.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/Java3D/1.6.0/lib/ext/j3dutils.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/Java3D/1.6.0/lib/ext/vecmath.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/Java3D/1.6.0/lib/ext/vecmath-1.3.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

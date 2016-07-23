@@ -6,7 +6,7 @@ package com.somendu.sample;
 import java.io.IOException;
 
 /**
- * <Description>
+ * THis is the main class.
  * 
  * @author Somendu Maiti
  * @since Jul 22, 2016
