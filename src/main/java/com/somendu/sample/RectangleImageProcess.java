@@ -13,7 +13,7 @@ import ij.gui.Roi;
 import ij.process.ImageProcessor;
 
 /**
- * <Description>
+ * Processing Class 
  * 
  * @author Somendu Maiti
  * @since Jul 15, 2016
