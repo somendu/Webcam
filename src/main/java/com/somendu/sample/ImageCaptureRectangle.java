@@ -129,6 +129,7 @@ public class ImageCaptureRectangle {
 		ImageCropListener mouseListener = new ImageCropListener(this);
 
 		imageCanvas.addMouseListener(mouseListener);
+
 	}
 
 	/**
