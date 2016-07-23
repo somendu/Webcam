@@ -18,7 +18,7 @@ public class RectangleImageMain {
 	public static void main(String[] args) throws IOException {
 
 		RectangleImage rectangleImage = new RectangleImage();
-		rectangleImage.showRectangle();
+		rectangleImage.showButton();
 	}
 
 }

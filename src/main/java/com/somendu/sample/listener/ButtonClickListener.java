@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
+import com.somendu.sample.RectangleImage;
 import com.somendu.sample.WebCamImage;
 
 /**
@@ -19,6 +20,13 @@ import com.somendu.sample.WebCamImage;
 public class ButtonClickListener implements MouseListener {
 
 	private BufferedImage image;
+	private RectangleImage rectangleImage;
+
+	public ButtonClickListener(RectangleImage rectangleImage) {
+
+		this.rectangleImage = rectangleImage;
+
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -29,8 +37,9 @@ public class ButtonClickListener implements MouseListener {
 
 		System.out.println("Clicked");
 		WebCamImage webCamImage = new WebCamImage();
-		setImage(webCamImage.takePicture());
+		webCamImage.takePicture();
 
+		rectangleImage.showImageWindow(webCamImage.getImage());
 	}
 
 	/*

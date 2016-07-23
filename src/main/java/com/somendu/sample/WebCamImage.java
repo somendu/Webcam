@@ -16,6 +16,8 @@ import com.github.sarxos.webcam.Webcam;
  */
 public class WebCamImage {
 
+	private BufferedImage image;
+
 	public WebCamImage() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,23 +27,35 @@ public class WebCamImage {
 	 * 
 	 * @return
 	 */
-	public BufferedImage takePicture() {
+	public void takePicture() {
 
 		Webcam webcam;
 		webcam = Webcam.getDefault();
 
 		webcam.open();
 
-		BufferedImage image = webcam.getImage();
+		setImage(webcam.getImage());
 
 		// Incorrect dimension [1280x720] possible ones are [176x144] [320x240]
 		// [640x480]
 		// webcam.setViewSize(WebcamResolution.HD720.getSize());
 
-		// TODO - Show Prompt before taking picture
+		webcam.close();
 
-		// image = webcam.getImage();
+	}
 
+	/**
+	 * @return the image
+	 */
+	public BufferedImage getImage() {
 		return image;
+	}
+
+	/**
+	 * @param image
+	 *            the image to set
+	 */
+	public void setImage(BufferedImage image) {
+		this.image = image;
 	}
 }

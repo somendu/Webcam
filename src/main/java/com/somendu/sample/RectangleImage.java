@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.media.j3d.QuadArray;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -52,7 +51,7 @@ public class RectangleImage {
 	 * 
 	 * @throws IOException
 	 */
-	public void showRectangle() throws IOException {
+	public void showButton() throws IOException {
 
 		// get default webcam and open it
 		// Webcam webcam;
@@ -68,8 +67,8 @@ public class RectangleImage {
 		File file = new File("test.png");
 
 		// save image to PNG file
-		BufferedImage image = ImageIO.read(file);
-		// BufferedImage image = showButtonToClick();
+		// BufferedImage image = ImageIO.read(file);
+		showButtonToClick();
 
 		JFrame jframe = new JFrame("Welcome");
 
@@ -86,7 +85,7 @@ public class RectangleImage {
 		// Point3f east = new Point3f(1.0f, 0.0f, 0.0f);
 
 		// TODO - Method to show image
-		showImageWindow(image);
+		// showImageWindow(image);
 
 		// mouseListener.getFirstxCoordinate();
 
@@ -114,7 +113,7 @@ public class RectangleImage {
 	 * 
 	 * @return
 	 */
-	private BufferedImage showButtonToClick() {
+	private void showButtonToClick() {
 
 		JFrame jframe = new JFrame("Welcome");
 		JButton jButton = new JButton("Click to Take Picture");
@@ -130,14 +129,18 @@ public class RectangleImage {
 		jframe.pack();
 		jframe.setVisible(true);
 
-		ButtonClickListener buttonClickListener = new ButtonClickListener();
+		ButtonClickListener buttonClickListener = new ButtonClickListener(this);
 
 		jButton.addMouseListener(buttonClickListener);
 
-		return buttonClickListener.getImage();
 	}
 
-	private void showImageWindow(BufferedImage image) {
+	/**
+	 * SHowing Image Window
+	 * 
+	 * @param image
+	 */
+	public void showImageWindow(BufferedImage image) {
 
 		imagePlus = new ImagePlus("Main Image", image);
 
