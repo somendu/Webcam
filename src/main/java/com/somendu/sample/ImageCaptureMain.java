@@ -6,8 +6,11 @@ package com.somendu.sample;
 import java.io.IOException;
 
 /**
- * @author Admin_8_1
- *
+ * <Description>
+ * 
+ * @author Somendu Maiti
+ * @since Jul 22, 2016
+ * 
  */
 public class ImageCaptureMain {
 

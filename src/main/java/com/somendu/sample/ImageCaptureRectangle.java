@@ -3,10 +3,11 @@
  */
 package com.somendu.sample;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.media.j3d.QuadArray;
@@ -24,7 +25,7 @@ import ij.gui.ImageWindow;
  * <Description>
  * 
  * @author Somendu Maiti
- * @since Jul 15, 2016
+ * @since Jul 22, 2016
  * 
  */
 public class ImageCaptureRectangle {
@@ -52,21 +53,6 @@ public class ImageCaptureRectangle {
 	 */
 	public void showButton() throws IOException {
 
-		// get default webcam and open it
-		// Webcam webcam;
-		// webcam = Webcam.getDefault();
-		//
-		// webcam.open();
-
-		// showButtonToClick();
-
-		// get image
-		// BufferedImage image = webcam.getImage();
-
-		File file = new File("test.png");
-
-		// save image to PNG file
-		// BufferedImage image = ImageIO.read(file);
 		showButtonToClick();
 
 		QuadArray quadArray = new QuadArray(16, QuadArray.COORDINATES);
@@ -105,6 +91,15 @@ public class ImageCaptureRectangle {
 
 		jframe.pack();
 		jframe.setVisible(true);
+
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		System.out.println("Dimension X" + dimension.getHeight());
+		System.out.println("Dimension Y" + dimension.getWidth());
+
+		int frameX = (int) ((dimension.getWidth() - jframe.getWidth()) / 2);
+		int frameY = (int) ((dimension.getHeight() - jframe.getHeight()) / 2);
+
+		jframe.setLocation(frameX, frameY);
 
 		CaptureButtonListener buttonClickListener = new CaptureButtonListener(this);
 

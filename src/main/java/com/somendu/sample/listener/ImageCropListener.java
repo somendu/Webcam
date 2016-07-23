@@ -6,16 +6,16 @@ package com.somendu.sample.listener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import com.somendu.sample.ImageCaptureRectangle;
 import com.somendu.sample.ImageCaptureProcess;
+import com.somendu.sample.ImageCaptureRectangle;
 
 import ij.gui.ImageWindow;
 
 /**
- * <Description>
+ * Listener for Mouse on mouse hover
  * 
  * @author Somendu Maiti
- * @since Jul 13, 2016
+ * @since Jul 22, 2016
  * 
  */
 public class ImageCropListener implements MouseListener {
