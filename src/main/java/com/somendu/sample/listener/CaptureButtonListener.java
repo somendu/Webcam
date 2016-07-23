@@ -7,25 +7,24 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-import com.somendu.sample.RectangleImage;
-import com.somendu.sample.WebCamImage;
+import com.somendu.sample.ImageCapture;
+import com.somendu.sample.ImageCaptureRectangle;
 
 /**
- * <Description>
+ * Mouse Listener for capturing the image
  * 
  * @author Somendu Maiti<smaiti@scan-it.com.sg>
  * @since Jul 22, 2016
  * 
  */
-public class ButtonClickListener implements MouseListener {
+public class CaptureButtonListener implements MouseListener {
 
 	private BufferedImage image;
-	private RectangleImage rectangleImage;
+	private ImageCaptureRectangle rectangleImage;
 
-	public ButtonClickListener(RectangleImage rectangleImage) {
+	public CaptureButtonListener(ImageCaptureRectangle imageCaptureRectangle) {
 
-		this.rectangleImage = rectangleImage;
-
+		this.rectangleImage = imageCaptureRectangle;
 	}
 
 	/*
@@ -36,10 +35,12 @@ public class ButtonClickListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 
 		System.out.println("Clicked");
-		WebCamImage webCamImage = new WebCamImage();
-		webCamImage.takePicture();
+		rectangleImage.getJframe().setVisible(false);
+		ImageCapture imageCapture = new ImageCapture();
+		imageCapture.takePicture();
 
-		rectangleImage.showImageWindow(webCamImage.getImage());
+		rectangleImage.showImageWindow(imageCapture.getImage());
+
 	}
 
 	/*

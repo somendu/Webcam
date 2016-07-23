@@ -14,11 +14,11 @@ import com.github.sarxos.webcam.Webcam;
  * @since Jul 22, 2016
  * 
  */
-public class WebCamImage {
+public class ImageCapture {
 
 	private BufferedImage image;
 
-	public WebCamImage() {
+	public ImageCapture() {
 
 	}
 

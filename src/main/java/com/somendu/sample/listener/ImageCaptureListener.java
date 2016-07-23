@@ -6,7 +6,7 @@ package com.somendu.sample.listener;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamEvent;
 import com.github.sarxos.webcam.WebcamListener;
-import com.somendu.sample.WebCamImage;
+import com.somendu.sample.ImageCapture;
 
 /**
  * <Description>
@@ -15,14 +15,14 @@ import com.somendu.sample.WebCamImage;
  * @since Jul 22, 2016
  * 
  */
-public class ImageWebcamListener implements WebcamListener {
+public class ImageCaptureListener implements WebcamListener {
 
-	private WebCamImage webcamImage;
+	private ImageCapture imageCapture;
 
 	private Webcam webCam;
 
-	public ImageWebcamListener(WebCamImage webcamImage, Webcam webCam) {
-		this.webcamImage = webcamImage;
+	public ImageCaptureListener(ImageCapture imageCapture, Webcam webCam) {
+		this.imageCapture = imageCapture;
 		this.webCam = webCam;
 	}
 

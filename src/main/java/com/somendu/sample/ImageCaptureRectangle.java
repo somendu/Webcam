@@ -3,8 +3,6 @@
  */
 package com.somendu.sample;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -14,10 +12,9 @@ import java.io.IOException;
 import javax.media.j3d.QuadArray;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import com.somendu.sample.listener.ButtonClickListener;
-import com.somendu.sample.listener.ImageMouseListener;
+import com.somendu.sample.listener.CaptureButtonListener;
+import com.somendu.sample.listener.ImageCropListener;
 
 import ij.ImagePlus;
 import ij.gui.ImageCanvas;
@@ -30,7 +27,7 @@ import ij.gui.ImageWindow;
  * @since Jul 15, 2016
  * 
  */
-public class RectangleImage {
+public class ImageCaptureRectangle {
 
 	private int firstxCoordinate = 0;
 	private int firstyCoordinate = 0;
@@ -42,7 +39,9 @@ public class RectangleImage {
 	private ImageCanvas imageCanvas;
 	private ImageWindow imageWindow;
 
-	public RectangleImage() {
+	private JFrame jframe;
+
+	public ImageCaptureRectangle() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -70,8 +69,6 @@ public class RectangleImage {
 		// BufferedImage image = ImageIO.read(file);
 		showButtonToClick();
 
-		JFrame jframe = new JFrame("Welcome");
-
 		QuadArray quadArray = new QuadArray(16, QuadArray.COORDINATES);
 
 		// Point3f east = new Point3f(1.0f, 0.0f, 0.0f);
@@ -84,23 +81,6 @@ public class RectangleImage {
 		//
 		// Point3f east = new Point3f(1.0f, 0.0f, 0.0f);
 
-		// TODO - Method to show image
-		// showImageWindow(image);
-
-		// mouseListener.getFirstxCoordinate();
-
-		// jframe.setContentPane(new JLabel(new ImageIcon(file.getName())));
-		//
-		// jframe.add(imageCanvas);
-		//
-		// JPanel jPanel = new JPanel();
-		//
-		// jPanel.setLayout(new GridLayout(1, 1, 2, 2));
-		//
-		// jframe.getContentPane().add(jPanel, BorderLayout.CENTER);
-		//
-		// jframe.pack();
-		// jframe.setVisible(true);
 		//
 		// FileSaver fs = new FileSaver(imagePlus);
 		// fs.saveAsJpeg("path-to-gray.jpg");
@@ -115,21 +95,18 @@ public class RectangleImage {
 	 */
 	private void showButtonToClick() {
 
-		JFrame jframe = new JFrame("Welcome");
-		JButton jButton = new JButton("Click to Take Picture");
+		jframe = new JFrame("Welcome");
+		JButton jButton = new JButton();
 
-		jframe.setContentPane(jButton);
+		jButton.setText("Click to Take Picture");
+		jButton.setVisible(true);
 
-		JPanel jPanel = new JPanel();
-
-		jPanel.setLayout(new GridLayout(4, 4, 2, 2));
-
-		jframe.getContentPane().add(jPanel, BorderLayout.CENTER);
+		jframe.getContentPane().add(jButton);
 
 		jframe.pack();
 		jframe.setVisible(true);
 
-		ButtonClickListener buttonClickListener = new ButtonClickListener(this);
+		CaptureButtonListener buttonClickListener = new CaptureButtonListener(this);
 
 		jButton.addMouseListener(buttonClickListener);
 
@@ -154,7 +131,7 @@ public class RectangleImage {
 			}
 		});
 
-		ImageMouseListener mouseListener = new ImageMouseListener(this);
+		ImageCropListener mouseListener = new ImageCropListener(this);
 
 		imageCanvas.addMouseListener(mouseListener);
 	}
@@ -262,6 +239,21 @@ public class RectangleImage {
 	 */
 	public void setImageWindow(ImageWindow imageWindow) {
 		this.imageWindow = imageWindow;
+	}
+
+	/**
+	 * @return the jframe
+	 */
+	public JFrame getJframe() {
+		return jframe;
+	}
+
+	/**
+	 * @param jframe
+	 *            the jframe to set
+	 */
+	public void setJframe(JFrame jframe) {
+		this.jframe = jframe;
 	}
 
 }

@@ -19,7 +19,7 @@ import ij.process.ImageProcessor;
  * @since Jul 15, 2016
  * 
  */
-public class RectangleImageProcess {
+public class ImageCaptureProcess {
 
 	private int firstxCoordinate = 0;
 
@@ -37,7 +37,7 @@ public class RectangleImageProcess {
 
 	private ImagePlus imagePlus = new ImagePlus();
 
-	public RectangleImageProcess() {
+	public ImageCaptureProcess() {
 
 	}
 

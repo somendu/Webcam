@@ -9,7 +9,7 @@ import java.io.IOException;
  * @author Admin_8_1
  *
  */
-public class RectangleImageMain {
+public class ImageCaptureMain {
 
 	/**
 	 * Main Method
@@ -19,9 +19,9 @@ public class RectangleImageMain {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		RectangleImage rectangleImage = new RectangleImage();
+		ImageCaptureRectangle imageCaptureRectangle = new ImageCaptureRectangle();
 
-		rectangleImage.showButton();
+		imageCaptureRectangle.showButton();
 	}
 
 }
