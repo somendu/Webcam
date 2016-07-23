@@ -31,8 +31,13 @@ public class AwtListenerDemo {
 		prepareGUI();
 	}
 
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		AwtListenerDemo awtListenerDemo = new AwtListenerDemo();
+
 		awtListenerDemo.showMouseListenerDemo();
 	}
 
