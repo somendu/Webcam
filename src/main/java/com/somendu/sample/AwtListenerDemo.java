@@ -41,6 +41,9 @@ public class AwtListenerDemo {
 		awtListenerDemo.showMouseListenerDemo();
 	}
 
+	/**
+	 * Prpare UI
+	 */
 	private void prepareGUI() {
 		mainFrame = new Frame("Java AWT Examples");
 		mainFrame.setSize(400, 400);
