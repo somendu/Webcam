@@ -26,6 +26,7 @@ public class RectangleImageProcess {
 	private int firstyCoordinate = 0;
 
 	private int secondxCoordinate = 0;
+
 	private int secondyCoordinate = 0;
 
 	// Checking this for diff in height and width

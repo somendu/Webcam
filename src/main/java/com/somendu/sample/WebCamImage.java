@@ -19,7 +19,7 @@ public class WebCamImage {
 	private BufferedImage image;
 
 	public WebCamImage() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/**
