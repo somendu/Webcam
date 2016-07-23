@@ -18,6 +18,7 @@ import com.somendu.sample.WebCamImage;
 public class ImageWebcamListener implements WebcamListener {
 
 	private WebCamImage webcamImage;
+
 	private Webcam webCam;
 
 	public ImageWebcamListener(WebCamImage webcamImage, Webcam webCam) {

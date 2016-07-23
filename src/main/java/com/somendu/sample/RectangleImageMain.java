@@ -12,12 +12,15 @@ import java.io.IOException;
 public class RectangleImageMain {
 
 	/**
+	 * Main Method
+	 * 
 	 * @param args
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
 
 		RectangleImage rectangleImage = new RectangleImage();
+
 		rectangleImage.showButton();
 	}
 

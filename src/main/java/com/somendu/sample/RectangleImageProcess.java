@@ -13,7 +13,7 @@ import ij.gui.Roi;
 import ij.process.ImageProcessor;
 
 /**
- * Processing Class 
+ * Processing Class
  * 
  * @author Somendu Maiti
  * @since Jul 15, 2016
@@ -22,6 +22,7 @@ import ij.process.ImageProcessor;
 public class RectangleImageProcess {
 
 	private int firstxCoordinate = 0;
+
 	private int firstyCoordinate = 0;
 
 	private int secondxCoordinate = 0;
