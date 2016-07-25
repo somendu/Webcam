@@ -84,14 +84,20 @@ public class ImageCropListener implements MouseListener {
 		// imageCaptureWindow.setImageWindow(rectangleImage.getImageWindow());
 		// imageCaptureWindow.showImageWindowAlert();
 
-		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
+		ImageWindow imageWindowOld = rectangleImage.getImageWindow();
+		imageWindowOld.setImage(rectangleImage.getImagePlus());
 
+		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
 		ImageCaptureFinal imageCaptureFinal = new ImageCaptureFinal();
 		imageCaptureFinal.setFirstxCoordinate(firstxCoordinate);
 		imageCaptureFinal.setFirstyCoordinate(firstyCoordinate);
 		imageCaptureFinal.setSecondxCoordinate(secondxCoordinate);
 		imageCaptureFinal.setSecondyCoordinate(secondyCoordinate);
+
 		imageCaptureFinal.setImageWindow(rectangleImage.getImageWindow());
+
+		imageCaptureFinal.setImageWindowOld(imageWindowOld);
+
 		imageCaptureFinal.generateWindow();
 
 		rectangleImage.getImageCanvas().removeMouseListener(this);

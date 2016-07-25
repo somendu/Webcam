@@ -34,6 +34,7 @@ public class ImageCaptureFinal {
 	private int fixedWidth = 70;
 
 	private ImageWindow imageWindow;
+	private ImageWindow imageWindowOld;
 
 	private ImagePlus imagePlus = new ImagePlus();
 
@@ -297,5 +298,19 @@ public class ImageCaptureFinal {
 	 */
 	public void setImageWindow(ImageWindow imageWindow) {
 		this.imageWindow = imageWindow;
+	}
+
+	/**
+	 * @return the imageWindowOld
+	 */
+	public ImageWindow getImageWindowOld() {
+		return imageWindowOld;
+	}
+
+	/**
+	 * @param imageWindowOld the imageWindowOld to set
+	 */
+	public void setImageWindowOld(ImageWindow imageWindowOld) {
+		this.imageWindowOld = imageWindowOld;
 	}
 }
