@@ -6,8 +6,9 @@ package com.somendu.sample.listener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import com.somendu.sample.ImageCaptureProcess;
+import com.somendu.sample.ImageCaptureFinal;
 import com.somendu.sample.ImageCaptureRectangle;
+import com.somendu.sample.ImageCaptureWindow;
 
 import ij.gui.ImageWindow;
 
@@ -28,9 +29,12 @@ public class ImageCropListener implements MouseListener {
 	private int secondxCoordinate = 0;
 	private int secondyCoordinate = 0;
 
-	public ImageCropListener(ImageCaptureRectangle rectangleImage) {
+	private ImageCaptureWindow imageCaptureWindow;
+
+	public ImageCropListener(ImageCaptureRectangle rectangleImage, ImageCaptureWindow imageCaptureWindow) {
 
 		this.rectangleImage = rectangleImage;
+		this.imageCaptureWindow = imageCaptureWindow;
 	}
 
 	/*
@@ -70,18 +74,25 @@ public class ImageCropListener implements MouseListener {
 		System.out.println("Mouse Released");
 		System.out.println("X : " + secondxCoordinate + "	Y : " + secondyCoordinate);
 
-		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
-
 		// TODO
 		// Show Warning - before Cutting
 
-		ImageCaptureProcess imageCapture = new ImageCaptureProcess();
-		imageCapture.setFirstxCoordinate(firstxCoordinate);
-		imageCapture.setFirstyCoordinate(firstyCoordinate);
-		imageCapture.setSecondxCoordinate(secondxCoordinate);
-		imageCapture.setSecondyCoordinate(secondyCoordinate);
-		imageCapture.setImageWindow(rectangleImage.getImageWindow());
-		imageCapture.generateWindow();
+		if (rectangleImage.getImageWindow() != null) {
+			System.out.println("Image window is not null");
+		}
+
+		// imageCaptureWindow.setImageWindow(rectangleImage.getImageWindow());
+		// imageCaptureWindow.showImageWindowAlert();
+
+		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
+
+		ImageCaptureFinal imageCaptureFinal = new ImageCaptureFinal();
+		imageCaptureFinal.setFirstxCoordinate(firstxCoordinate);
+		imageCaptureFinal.setFirstyCoordinate(firstyCoordinate);
+		imageCaptureFinal.setSecondxCoordinate(secondxCoordinate);
+		imageCaptureFinal.setSecondyCoordinate(secondyCoordinate);
+		imageCaptureFinal.setImageWindow(rectangleImage.getImageWindow());
+		imageCaptureFinal.generateWindow();
 
 		rectangleImage.getImageCanvas().removeMouseListener(this);
 
@@ -93,7 +104,8 @@ public class ImageCropListener implements MouseListener {
 	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 	 */
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+
+		System.out.println("Mouse Entered");
 
 	}
 
@@ -104,6 +116,7 @@ public class ImageCropListener implements MouseListener {
 	 */
 	public void mouseExited(MouseEvent e) {
 
+		System.out.println("Mouse Exited");
 	}
 
 	/**

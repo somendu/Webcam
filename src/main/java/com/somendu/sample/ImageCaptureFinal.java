@@ -19,7 +19,7 @@ import ij.process.ImageProcessor;
  * @since Jul 22, 2016
  * 
  */
-public class ImageCaptureProcess {
+public class ImageCaptureFinal {
 
 	private int firstxCoordinate = 0;
 
@@ -37,7 +37,7 @@ public class ImageCaptureProcess {
 
 	private ImagePlus imagePlus = new ImagePlus();
 
-	public ImageCaptureProcess() {
+	public ImageCaptureFinal() {
 
 	}
 
@@ -57,6 +57,7 @@ public class ImageCaptureProcess {
 				System.exit(0);
 			}
 		});
+
 	}
 
 	/**
@@ -80,7 +81,7 @@ public class ImageCaptureProcess {
 
 		// Case When Start from Left Top
 		// x1 = 10, y1 = 10, x2 = 30, y2 = 30
-		if (x1 < x2) {
+			if (x1 < x2) {
 			if (y1 == y2) {
 				// exit;
 			} else
@@ -106,7 +107,7 @@ public class ImageCaptureProcess {
 
 			// Case When Start from Left Bottom
 			// x1 = 10, y1 = 30, x2 = 30, y2 = 10
-			if (y1 > y2) {
+				if (y1 > y2) {
 
 				width = x2 - x1;
 				// if (height < maxHeight) {
@@ -156,7 +157,7 @@ public class ImageCaptureProcess {
 
 			// Case When start from Right Bottom
 			// x1 = 30, y1 = 30, x2 = 10, y2 = 10
-			if (y1 > y2) {
+				if (y1 > y2) {
 
 				width = x1 - x2;
 

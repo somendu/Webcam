@@ -4,18 +4,19 @@
 package com.somendu.sample;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 
-import javax.media.j3d.QuadArray;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import com.somendu.sample.listener.CaptureButtonListener;
 import com.somendu.sample.listener.ImageCropListener;
+import com.somendu.sample.utils.ScreenUtility;
 
 import ij.ImagePlus;
 import ij.gui.ImageCanvas;
@@ -39,7 +40,7 @@ public class ImageCaptureRectangle {
 	private ImagePlus imagePlus;
 	private ImageCanvas imageCanvas;
 	private ImageWindow imageWindow;
-
+	private ImageCaptureWindow imageCaptureWindow;
 	private JFrame jframe;
 
 	public ImageCaptureRectangle() {
@@ -51,27 +52,10 @@ public class ImageCaptureRectangle {
 	 * 
 	 * @throws IOException
 	 */
-	public void showButton() throws IOException {
+	public void showButton() {
 
 		showButtonToClick();
 
-		QuadArray quadArray = new QuadArray(16, QuadArray.COORDINATES);
-
-		// Point3f east = new Point3f(1.0f, 0.0f, 0.0f);
-		//
-		// Point3f east = new Point3f(1.0f, 0.0f, 0.0f);
-		//
-		// Point3f east = new Point3f(1.0f, 0.0f, 0.0f);
-		//
-		// Point3f east = new Point3f(1.0f, 0.0f, 0.0f);
-		//
-		// Point3f east = new Point3f(1.0f, 0.0f, 0.0f);
-
-		//
-		// FileSaver fs = new FileSaver(imagePlus);
-		// fs.saveAsJpeg("path-to-gray.jpg");
-
-		// webcam.close();
 	}
 
 	/**
@@ -85,23 +69,23 @@ public class ImageCaptureRectangle {
 		JButton jButton = new JButton();
 
 		jButton.setText("Click to Take Picture");
+
 		jButton.setVisible(true);
 
-		jframe.getContentPane().add(jButton);
+		JPanel jPanel = new JPanel();
+		jPanel.add(jButton);
+		jframe.getContentPane().add(jPanel);
 
 		jframe.pack();
 		jframe.setVisible(true);
 
-		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		System.out.println("Dimension X" + dimension.getHeight());
-		System.out.println("Dimension Y" + dimension.getWidth());
+		Dimension dimension = ScreenUtility.getDimension(200, 70);
+		jframe.setSize(dimension);
 
-		int frameX = (int) ((dimension.getWidth() - jframe.getWidth()) / 2);
-		int frameY = (int) ((dimension.getHeight() - jframe.getHeight()) / 2);
+		HashMap<String, Integer> frameLocationMap = ScreenUtility.getCenterCoordinates(jframe);
+		jframe.setLocation(frameLocationMap.get("frameX"), frameLocationMap.get("frameY"));
 
-		jframe.setLocation(frameX, frameY);
-
-		CaptureButtonListener buttonClickListener = new CaptureButtonListener(this);
+		CaptureButtonListener buttonClickListener = new CaptureButtonListener(this, jframe);
 
 		jButton.addMouseListener(buttonClickListener);
 
@@ -120,13 +104,19 @@ public class ImageCaptureRectangle {
 
 		imageWindow = new ImageWindow(imagePlus, imageCanvas);
 
+		imageCaptureWindow = new ImageCaptureWindow();
+
+		HashMap<String, Integer> frameLocationMap = ScreenUtility.getCenterCoordinates(imageWindow);
+		imageWindow.setLocation(frameLocationMap.get("frameX"), frameLocationMap.get("frameY"));
+
 		imageWindow.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent windowEvent) {
 				System.exit(0);
 			}
 		});
 
-		ImageCropListener mouseListener = new ImageCropListener(this);
+		imageCaptureWindow.initialize();
+		ImageCropListener mouseListener = new ImageCropListener(this, imageCaptureWindow);
 
 		imageCanvas.addMouseListener(mouseListener);
 
