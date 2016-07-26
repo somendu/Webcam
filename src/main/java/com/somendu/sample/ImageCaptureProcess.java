@@ -57,6 +57,8 @@ public class ImageCaptureProcess {
 				System.exit(0);
 			}
 		});
+
+		// TODO Send the image to the Universe class
 	}
 
 	/**
