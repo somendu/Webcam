@@ -70,6 +70,8 @@ public class ImageCropListener implements MouseListener {
 		System.out.println("Mouse Released");
 		System.out.println("X : " + secondxCoordinate + "	Y : " + secondyCoordinate);
 
+		ImageWindow oldImageWindow = rectangleImage.getImageWindow();
+
 		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
 
 		// TODO
@@ -81,6 +83,9 @@ public class ImageCropListener implements MouseListener {
 		imageCapture.setSecondxCoordinate(secondxCoordinate);
 		imageCapture.setSecondyCoordinate(secondyCoordinate);
 		imageCapture.setImageWindow(rectangleImage.getImageWindow());
+
+		imageCapture.setImageOldWindow(oldImageWindow);
+
 		imageCapture.generateWindow();
 
 		rectangleImage.getImageCanvas().removeMouseListener(this);

@@ -35,6 +35,8 @@ public class ImageCaptureProcess {
 
 	private ImageWindow imageWindow;
 
+	private ImageWindow imageOldWindow;
+
 	private ImagePlus imagePlus = new ImagePlus();
 
 	public ImageCaptureProcess() {
@@ -49,7 +51,11 @@ public class ImageCaptureProcess {
 		imageWindow = getImageWindow();
 		imagePlus = imageWindow.getImagePlus();
 		imagePlus.setTitle("Cropped Image");
+
+		setForAlert();
+
 		setImage();
+
 		imageWindow.setImage(imagePlus);
 		imageWindow.setVisible(true);
 		imageWindow.addWindowListener(new WindowAdapter() {
@@ -59,6 +65,10 @@ public class ImageCaptureProcess {
 		});
 
 		// TODO Send the image to the Universe class
+	}
+
+	private void setForAlert() {
+
 	}
 
 	/**
@@ -82,7 +92,7 @@ public class ImageCaptureProcess {
 
 		// Case When Start from Left Top
 		// x1 = 10, y1 = 10, x2 = 30, y2 = 30
-		if (x1 < x2) {
+			if (x1 < x2) {
 			if (y1 == y2) {
 				// exit;
 			} else
@@ -108,7 +118,7 @@ public class ImageCaptureProcess {
 
 			// Case When Start from Left Bottom
 			// x1 = 10, y1 = 30, x2 = 30, y2 = 10
-			if (y1 > y2) {
+				if (y1 > y2) {
 
 				width = x2 - x1;
 				// if (height < maxHeight) {
@@ -158,7 +168,7 @@ public class ImageCaptureProcess {
 
 			// Case When start from Right Bottom
 			// x1 = 30, y1 = 30, x2 = 10, y2 = 10
-			if (y1 > y2) {
+				if (y1 > y2) {
 
 				width = x1 - x2;
 
@@ -298,5 +308,20 @@ public class ImageCaptureProcess {
 	 */
 	public void setImageWindow(ImageWindow imageWindow) {
 		this.imageWindow = imageWindow;
+	}
+
+	/**
+	 * @return the imageOldWindow
+	 */
+	public ImageWindow getImageOldWindow() {
+		return imageOldWindow;
+	}
+
+	/**
+	 * @param imageOldWindow
+	 *            the imageOldWindow to set
+	 */
+	public void setImageOldWindow(ImageWindow imageOldWindow) {
+		this.imageOldWindow = imageOldWindow;
 	}
 }

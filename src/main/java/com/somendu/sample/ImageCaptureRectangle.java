@@ -3,12 +3,11 @@
  */
 package com.somendu.sample;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.media.j3d.QuadArray;
 import javax.swing.JButton;
@@ -92,14 +91,8 @@ public class ImageCaptureRectangle {
 		jframe.pack();
 		jframe.setVisible(true);
 
-		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		System.out.println("Dimension X" + dimension.getHeight());
-		System.out.println("Dimension Y" + dimension.getWidth());
-
-		int frameX = (int) ((dimension.getWidth() - jframe.getWidth()) / 2);
-		int frameY = (int) ((dimension.getHeight() - jframe.getHeight()) / 2);
-
-		jframe.setLocation(frameX, frameY);
+		HashMap<String, Integer> dimensionMap = ScreenUtility.getCenterDimension(jframe);
+		jframe.setLocation(dimensionMap.get("frameX"), dimensionMap.get("frameY"));
 
 		CaptureButtonListener buttonClickListener = new CaptureButtonListener(this);
 
