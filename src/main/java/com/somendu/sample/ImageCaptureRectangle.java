@@ -40,11 +40,14 @@ public class ImageCaptureRectangle {
 	private ImagePlus imagePlus;
 	private ImageCanvas imageCanvas;
 	private ImageWindow imageWindow;
-	private ImageCaptureWindow imageCaptureWindow;
+	private ImageSaver imageCaptureWindow;
+
+	private BufferedImage image;
+
 	private JFrame jframe;
 
 	public ImageCaptureRectangle() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/**
@@ -104,7 +107,7 @@ public class ImageCaptureRectangle {
 
 		imageWindow = new ImageWindow(imagePlus, imageCanvas);
 
-		imageCaptureWindow = new ImageCaptureWindow();
+		imageCaptureWindow = new ImageSaver();
 
 		HashMap<String, Integer> frameLocationMap = ScreenUtility.getCenterCoordinates(imageWindow);
 		imageWindow.setLocation(frameLocationMap.get("frameX"), frameLocationMap.get("frameY"));
@@ -115,7 +118,8 @@ public class ImageCaptureRectangle {
 			}
 		});
 
-		imageCaptureWindow.initialize();
+		imageCaptureWindow.setImage(image);
+
 		ImageCropListener mouseListener = new ImageCropListener(this, imageCaptureWindow);
 
 		imageCanvas.addMouseListener(mouseListener);
@@ -240,6 +244,21 @@ public class ImageCaptureRectangle {
 	 */
 	public void setJframe(JFrame jframe) {
 		this.jframe = jframe;
+	}
+
+	/**
+	 * @return the image
+	 */
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	/**
+	 * @param image
+	 *            the image to set
+	 */
+	public void setImage(BufferedImage image) {
+		this.image = image;
 	}
 
 }

@@ -5,10 +5,11 @@ package com.somendu.sample.listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import com.somendu.sample.ImageCaptureProcess;
 import com.somendu.sample.ImageCaptureRectangle;
-import com.somendu.sample.ImageCaptureWindow;
+import com.somendu.sample.ImageSaver;
 
 import ij.gui.ImageWindow;
 
@@ -29,9 +30,9 @@ public class ImageCropListener implements MouseListener {
 	private int secondxCoordinate = 0;
 	private int secondyCoordinate = 0;
 
-	private ImageCaptureWindow imageCaptureWindow;
+	private ImageSaver imageCaptureWindow;
 
-	public ImageCropListener(ImageCaptureRectangle rectangleImage, ImageCaptureWindow imageCaptureWindow) {
+	public ImageCropListener(ImageCaptureRectangle rectangleImage, ImageSaver imageCaptureWindow) {
 
 		this.rectangleImage = rectangleImage;
 		this.imageCaptureWindow = imageCaptureWindow;
@@ -81,21 +82,22 @@ public class ImageCropListener implements MouseListener {
 		// imageCaptureWindow.setImageWindow(rectangleImage.getImageWindow());
 		// imageCaptureWindow.showImageWindowAlert();
 
-		ImageWindow oldImageWindow = rectangleImage.getImageWindow();
-
-		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
+		BufferedImage oldImage = imageCaptureWindow.getImage();
 
 		// TODO
 		// Show Warning - before Cutting
 
 		ImageCaptureProcess imageCapture = new ImageCaptureProcess();
+		// Old Image
+		imageCapture.setOldImage(oldImage);
+
+		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
+
 		imageCapture.setFirstxCoordinate(firstxCoordinate);
 		imageCapture.setFirstyCoordinate(firstyCoordinate);
 		imageCapture.setSecondxCoordinate(secondxCoordinate);
 		imageCapture.setSecondyCoordinate(secondyCoordinate);
 		imageCapture.setImageWindow(rectangleImage.getImageWindow());
-
-		imageCapture.setImageOldWindow(oldImageWindow);
 
 		imageCapture.generateWindow();
 
