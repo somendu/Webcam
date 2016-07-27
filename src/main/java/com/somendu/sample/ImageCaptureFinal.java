@@ -50,6 +50,7 @@ public class ImageCaptureFinal {
 		imageWindow = getImageWindow();
 		imagePlus = imageWindow.getImagePlus();
 		imagePlus.setTitle("Cropped Image");
+
 		setImage();
 		imageWindow.setImage(imagePlus);
 		imageWindow.setVisible(true);
@@ -82,7 +83,7 @@ public class ImageCaptureFinal {
 
 		// Case When Start from Left Top
 		// x1 = 10, y1 = 10, x2 = 30, y2 = 30
-			if (x1 < x2) {
+		if (x1 < x2) {
 			if (y1 == y2) {
 				// exit;
 			} else
@@ -108,7 +109,7 @@ public class ImageCaptureFinal {
 
 			// Case When Start from Left Bottom
 			// x1 = 10, y1 = 30, x2 = 30, y2 = 10
-				if (y1 > y2) {
+			if (y1 > y2) {
 
 				width = x2 - x1;
 				// if (height < maxHeight) {
@@ -158,7 +159,7 @@ public class ImageCaptureFinal {
 
 			// Case When start from Right Bottom
 			// x1 = 30, y1 = 30, x2 = 10, y2 = 10
-				if (y1 > y2) {
+			if (y1 > y2) {
 
 				width = x1 - x2;
 
@@ -308,7 +309,8 @@ public class ImageCaptureFinal {
 	}
 
 	/**
-	 * @param imageWindowOld the imageWindowOld to set
+	 * @param imageWindowOld
+	 *            the imageWindowOld to set
 	 */
 	public void setImageWindowOld(ImageWindow imageWindowOld) {
 		this.imageWindowOld = imageWindowOld;

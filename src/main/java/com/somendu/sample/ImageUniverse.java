@@ -6,8 +6,9 @@ package com.somendu.sample;
 import java.awt.image.BufferedImage;
 
 import javax.media.j3d.BranchGroup;
+import javax.media.j3d.QuadArray;
+import javax.media.j3d.VirtualUniverse;
 import javax.vecmath.Point3f;
-import javax.vecmath.Point4f;
 
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
@@ -26,14 +27,21 @@ public class ImageUniverse {
 	public void showImage() {
 
 		SimpleUniverse simpleUniverse = new SimpleUniverse();
+		VirtualUniverse virtualUniverse = new VirtualUniverse();
 		BranchGroup branchGroup = new BranchGroup();
 
-		Point4f ne = new Point4f(1.0f, 0.0f, 0.0f, 1.0f); // east
-		// Point4f ne = new Point4f(1.0f, 0.0f, 0.0f, 1.0f); // east
-		Point3f s = new Point3f(0.0f, 0.0f, 1.0f); // south
+		Point3f n = new Point3f(1.0f, 0.0f, 0.0f); // North east
+		Point3f nw = new Point3f(0.0f, 0.0f, 1.0f); // south
 		Point3f w = new Point3f(-1.0f, 0.0f, 0.0f); // west
-		Point3f n = new Point3f(0.0f, 0.0f, -1.0f); // north
-		Point3f t = new Point3f(0.0f, 0.721f, 0.0f); // top
+		Point3f ws = new Point3f(0.0f, 0.0f, -1.0f); // north
+		Point3f s = new Point3f(0.0f, 0.721f, 0.0f); // top
+		Point3f se = new Point3f(-1.0f, 0.0f, 0.0f); // west
+		Point3f e = new Point3f(0.0f, 0.0f, -1.0f); // north
+		Point3f en = new Point3f(0.0f, 0.721f, 0.0f); // top
+
+		QuadArray quadArray = new QuadArray(12, QuadArray.COORDINATES);
+
+		quadArray.setCoordinate(0, n);
 
 	}
 
