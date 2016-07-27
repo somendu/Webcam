@@ -23,7 +23,7 @@ import ij.gui.ImageCanvas;
 import ij.gui.ImageWindow;
 
 /**
- * <Description>
+ * Class for showing the first button to click and showing Captured Image
  * 
  * @author Somendu Maiti
  * @since Jul 22, 2016
@@ -41,7 +41,7 @@ public class ImageCaptureRectangle {
 	private ImageCanvas imageCanvas;
 	private ImageWindow imageWindow;
 
-	private ImageSaver imageCaptureWindow;
+	private ImageSaver imageSaver;
 
 	private BufferedImage image;
 
@@ -108,7 +108,7 @@ public class ImageCaptureRectangle {
 
 		imageWindow = new ImageWindow(imagePlus, imageCanvas);
 
-		imageCaptureWindow = new ImageSaver();
+		imageSaver = new ImageSaver();
 
 		HashMap<String, Integer> frameLocationMap = ScreenUtility.getCenterCoordinates(imageWindow);
 		imageWindow.setLocation(frameLocationMap.get("frameX"), frameLocationMap.get("frameY"));
@@ -119,9 +119,9 @@ public class ImageCaptureRectangle {
 			}
 		});
 
-		imageCaptureWindow.setImage(image);
+		imageSaver.setImage(image);
 
-		ImageCropListener mouseListener = new ImageCropListener(this, imageCaptureWindow);
+		ImageCropListener mouseListener = new ImageCropListener(this, imageSaver);
 
 		imageCanvas.addMouseListener(mouseListener);
 
