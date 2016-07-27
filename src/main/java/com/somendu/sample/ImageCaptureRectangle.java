@@ -40,6 +40,7 @@ public class ImageCaptureRectangle {
 	private ImagePlus imagePlus;
 	private ImageCanvas imageCanvas;
 	private ImageWindow imageWindow;
+
 	private ImageSaver imageCaptureWindow;
 
 	private BufferedImage image;
