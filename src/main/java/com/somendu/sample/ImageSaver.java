@@ -6,7 +6,8 @@ package com.somendu.sample;
 import java.awt.image.BufferedImage;
 
 /**
- * capture Window Class - This is for setting the prompts etc
+ * Image Saver class for keeping the reference of the image
+ * 
  * 
  * @author Somendu Maiti
  * @since Jul 25, 2016

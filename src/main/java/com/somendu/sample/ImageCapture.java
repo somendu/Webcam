@@ -10,7 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * <Description>
+ * Capture Class for Image
  * 
  * @author Somendu Maiti
  * @since Jul 22, 2016

@@ -13,7 +13,7 @@ import ij.gui.Roi;
 import ij.process.ImageProcessor;
 
 /**
- * <Description>
+ * FInal Class post capture Image
  * 
  * @author Somendu Maiti
  * @since Jul 22, 2016

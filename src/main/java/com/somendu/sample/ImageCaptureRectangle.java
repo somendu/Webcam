@@ -23,7 +23,7 @@ import ij.gui.ImageCanvas;
 import ij.gui.ImageWindow;
 
 /**
- * <Description>
+ * Class for showing the first button to click and showing Captured Image
  * 
  * @author Somendu Maiti
  * @since Jul 22, 2016
