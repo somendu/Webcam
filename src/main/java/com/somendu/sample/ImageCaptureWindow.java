@@ -6,10 +6,13 @@ package com.somendu.sample;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import ij.ImagePlus;
+import ij.gui.ImageCanvas;
 import ij.gui.ImageWindow;
 
 /**
@@ -27,14 +30,19 @@ public class ImageCaptureWindow {
 
 	private JPanel jPanel = new JPanel();
 
+	private ImagePlus imagePlus;
+	private ImageCanvas imageCanvas;
+
+	private BufferedImage image;
+
 	public ImageCaptureWindow() {
 
 	}
 
 	/**
-	 * Initializing
+	 * This method will show alert on the image window
 	 */
-	public void initialize() {
+	public void showImageWindowAlert() {
 
 		jPanel.add(okButton);
 		jPanel.add(cancelButton);
@@ -44,12 +52,6 @@ public class ImageCaptureWindow {
 
 		okButton.setVisible(true);
 		cancelButton.setVisible(true);
-	}
-
-	/**
-	 * This method will show alert on the image window
-	 */
-	public void showImageWindowAlert() {
 
 		imageWindow.add(jPanel);
 		jPanel.setVisible(true);
@@ -66,19 +68,18 @@ public class ImageCaptureWindow {
 	}
 
 	/**
-	 * @return the imageWindow
+	 * @return the image
 	 */
-	public ImageWindow getImageWindow() {
-		return imageWindow;
+	public BufferedImage getImage() {
+		return image;
 	}
 
 	/**
-	 * @param imageWindow
-	 *            the imageWindow to set
+	 * @param image
+	 *            the image to set
 	 */
-	public void setImageWindow(ImageWindow imageWindow) {
-		this.imageWindow = imageWindow;
-
+	public void setImage(BufferedImage image) {
+		this.image = image;
 	}
 
 }

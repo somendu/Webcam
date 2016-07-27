@@ -5,6 +5,7 @@ package com.somendu.sample.listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import com.somendu.sample.ImageCaptureProcess;
 import com.somendu.sample.ImageCaptureRectangle;
@@ -81,21 +82,22 @@ public class ImageCropListener implements MouseListener {
 		// imageCaptureWindow.setImageWindow(rectangleImage.getImageWindow());
 		// imageCaptureWindow.showImageWindowAlert();
 
-		ImageWindow oldImageWindow = rectangleImage.getImageWindow();
-
-		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
+		BufferedImage oldImage = imageCaptureWindow.getImage();
 
 		// TODO
 		// Show Warning - before Cutting
 
 		ImageCaptureProcess imageCapture = new ImageCaptureProcess();
+		// Old Image
+		imageCapture.setOldImage(oldImage);
+
+		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
+
 		imageCapture.setFirstxCoordinate(firstxCoordinate);
 		imageCapture.setFirstyCoordinate(firstyCoordinate);
 		imageCapture.setSecondxCoordinate(secondxCoordinate);
 		imageCapture.setSecondyCoordinate(secondyCoordinate);
 		imageCapture.setImageWindow(rectangleImage.getImageWindow());
-
-		imageCapture.setImageOldWindow(oldImageWindow);
 
 		imageCapture.generateWindow();
 

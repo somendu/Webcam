@@ -3,11 +3,20 @@
  */
 package com.somendu.sample;
 
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import com.somendu.sample.listener.CancelButtonListener;
+import com.somendu.sample.listener.OkButtonListener;
+
 import ij.ImagePlus;
+import ij.gui.ImageCanvas;
 import ij.gui.ImageWindow;
 import ij.gui.Roi;
 import ij.process.ImageProcessor;
@@ -36,8 +45,13 @@ public class ImageCaptureProcess {
 	private ImageWindow imageWindow;
 
 	private ImageWindow imageOldWindow;
+	private ImagePlus imageOldPlus;
+	private ImageCanvas imageOldCanvas;
 
 	private ImagePlus imagePlus = new ImagePlus();
+
+	private BufferedImage oldImage;
+	private BufferedImage newImage;
 
 	public ImageCaptureProcess() {
 
@@ -52,29 +66,64 @@ public class ImageCaptureProcess {
 		imagePlus = imageWindow.getImagePlus();
 		imagePlus.setTitle("Cropped Image");
 
-		setForAlert();
+		setPromptButtonsOnImage();
 
-		setImage();
+		setProcessedImage();
+
+		// Since we want on Click of Ok the new image
+		setNewImage(imagePlus.getBufferedImage());
 
 		imageWindow.setImage(imagePlus);
-		imageWindow.setVisible(true);
+
 		imageWindow.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent windowEvent) {
 				System.exit(0);
 			}
 		});
 
-		// TODO Send the image to the Universe class
 	}
 
-	private void setForAlert() {
+	/**
+	 * Setting the Prompt Buttons
+	 * 
+	 * 
+	 */
+	private void setPromptButtonsOnImage() {
 
+		JButton okButton = new JButton();
+		JButton cancelButton = new JButton();
+
+		JPanel jPanel = new JPanel();
+
+		jPanel.add(okButton);
+		jPanel.add(cancelButton);
+
+		okButton.setText("Ok");
+		cancelButton.setText("Cancel");
+
+		okButton.setVisible(true);
+		cancelButton.setVisible(true);
+
+		imageWindow.add(jPanel);
+		jPanel.setVisible(true);
+		Dimension dimension = imageWindow.getCanvas().getSize();
+		imageWindow.setSize((int) dimension.getWidth() + 50, (int) (dimension.getHeight() + 150));
+
+		imageWindow.setVisible(true);
+
+		// TODO - Cancel Button Handler
+		CancelButtonListener cancelButtonListener = new CancelButtonListener(this, imageWindow);
+		cancelButton.addMouseListener(cancelButtonListener);
+
+		// TODO - Ok Button
+		OkButtonListener okButtonListener = new OkButtonListener(this, imageWindow);
+		okButton.addMouseListener(okButtonListener);
 	}
 
 	/**
 	 * Setting the image
 	 */
-	private void setImage() {
+	private void setProcessedImage() {
 
 		int x1 = firstxCoordinate;
 		int y1 = firstyCoordinate;
@@ -323,5 +372,65 @@ public class ImageCaptureProcess {
 	 */
 	public void setImageOldWindow(ImageWindow imageOldWindow) {
 		this.imageOldWindow = imageOldWindow;
+	}
+
+	/**
+	 * @return the imageOldPlus
+	 */
+	public ImagePlus getImageOldPlus() {
+		return imageOldPlus;
+	}
+
+	/**
+	 * @param imageOldPlus
+	 *            the imageOldPlus to set
+	 */
+	public void setImageOldPlus(ImagePlus imageOldPlus) {
+		this.imageOldPlus = imageOldPlus;
+	}
+
+	/**
+	 * @return the imageOldCanvas
+	 */
+	public ImageCanvas getImageOldCanvas() {
+		return imageOldCanvas;
+	}
+
+	/**
+	 * @param imageOldCanvas
+	 *            the imageOldCanvas to set
+	 */
+	public void setImageOldCanvas(ImageCanvas imageOldCanvas) {
+		this.imageOldCanvas = imageOldCanvas;
+	}
+
+	/**
+	 * @return the oldImage
+	 */
+	public BufferedImage getOldImage() {
+		return oldImage;
+	}
+
+	/**
+	 * @param oldImage
+	 *            the oldImage to set
+	 */
+	public void setOldImage(BufferedImage oldImage) {
+		this.oldImage = oldImage;
+	}
+
+	/**
+	 * @return the newImage
+	 */
+	public BufferedImage getNewImage() {
+		return newImage;
+	}
+
+	/**
+	 * @param newImage
+	 *            the newImage to set
+	 */
+	public void setNewImage(BufferedImage newImage) {
+		this.newImage = newImage;
 	}
 }
