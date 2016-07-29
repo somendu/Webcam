@@ -85,8 +85,6 @@ public class ImageCaptureProcess {
 
 	/**
 	 * Setting the Prompt Buttons
-	 * 
-	 * 
 	 */
 	private void setPromptButtonsOnImage() {
 
@@ -111,11 +109,9 @@ public class ImageCaptureProcess {
 
 		imageWindow.setVisible(true);
 
-		// TODO - Cancel Button Handler
 		CancelButtonListener cancelButtonListener = new CancelButtonListener(this, imageWindow);
 		cancelButton.addMouseListener(cancelButtonListener);
 
-		// TODO - Ok Button
 		OkButtonListener okButtonListener = new OkButtonListener(this, imageWindow);
 		okButton.addMouseListener(okButtonListener);
 	}
@@ -141,7 +137,7 @@ public class ImageCaptureProcess {
 
 		// Case When Start from Left Top
 		// x1 = 10, y1 = 10, x2 = 30, y2 = 30
-		if (x1 < x2) {
+			if (x1 < x2) {
 			if (y1 == y2) {
 				// exit;
 			} else
@@ -167,7 +163,7 @@ public class ImageCaptureProcess {
 
 			// Case When Start from Left Bottom
 			// x1 = 10, y1 = 30, x2 = 30, y2 = 10
-			if (y1 > y2) {
+				if (y1 > y2) {
 
 				width = x2 - x1;
 				// if (height < maxHeight) {
@@ -217,7 +213,7 @@ public class ImageCaptureProcess {
 
 			// Case When start from Right Bottom
 			// x1 = 30, y1 = 30, x2 = 10, y2 = 10
-			if (y1 > y2) {
+				if (y1 > y2) {
 
 				width = x1 - x2;
 

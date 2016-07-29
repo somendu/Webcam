@@ -30,12 +30,12 @@ public class ImageCropListener implements MouseListener {
 	private int secondxCoordinate = 0;
 	private int secondyCoordinate = 0;
 
-	private ImageSaver imageCaptureWindow;
+	private ImageSaver imageSaver;
 
-	public ImageCropListener(ImageCaptureRectangle rectangleImage, ImageSaver imageCaptureWindow) {
+	public ImageCropListener(ImageCaptureRectangle rectangleImage, ImageSaver imageSaver) {
 
 		this.rectangleImage = rectangleImage;
-		this.imageCaptureWindow = imageCaptureWindow;
+		this.imageSaver = imageSaver;
 	}
 
 	/*
@@ -75,31 +75,23 @@ public class ImageCropListener implements MouseListener {
 		System.out.println("Mouse Released");
 		System.out.println("X : " + secondxCoordinate + "	Y : " + secondyCoordinate);
 
-		if (rectangleImage.getImageWindow() != null) {
-			System.out.println("Image window is not null");
-		}
-
 		// imageCaptureWindow.setImageWindow(rectangleImage.getImageWindow());
 		// imageCaptureWindow.showImageWindowAlert();
 
-		BufferedImage oldImage = imageCaptureWindow.getImage();
+		BufferedImage oldImage = imageSaver.getImage();
 
-		// TODO
-		// Show Warning - before Cutting
-
-		ImageCaptureProcess imageCapture = new ImageCaptureProcess();
-		// Old Image
-		imageCapture.setOldImage(oldImage);
+		ImageCaptureProcess imageCaptureProcess = new ImageCaptureProcess();
+		imageCaptureProcess.setOldImage(oldImage);
 
 		rectangleImage.setImageWindow(new ImageWindow(rectangleImage.getImagePlus(), rectangleImage.getImageCanvas()));
 
-		imageCapture.setFirstxCoordinate(firstxCoordinate);
-		imageCapture.setFirstyCoordinate(firstyCoordinate);
-		imageCapture.setSecondxCoordinate(secondxCoordinate);
-		imageCapture.setSecondyCoordinate(secondyCoordinate);
-		imageCapture.setImageWindow(rectangleImage.getImageWindow());
+		imageCaptureProcess.setFirstxCoordinate(firstxCoordinate);
+		imageCaptureProcess.setFirstyCoordinate(firstyCoordinate);
+		imageCaptureProcess.setSecondxCoordinate(secondxCoordinate);
+		imageCaptureProcess.setSecondyCoordinate(secondyCoordinate);
+		imageCaptureProcess.setImageWindow(rectangleImage.getImageWindow());
 
-		imageCapture.generateWindow();
+		imageCaptureProcess.generateWindow();
 
 		rectangleImage.getImageCanvas().removeMouseListener(this);
 
@@ -112,8 +104,6 @@ public class ImageCropListener implements MouseListener {
 	 */
 	public void mouseEntered(MouseEvent e) {
 
-		System.out.println("Mouse Entered");
-
 	}
 
 	/*
@@ -123,7 +113,6 @@ public class ImageCropListener implements MouseListener {
 	 */
 	public void mouseExited(MouseEvent e) {
 
-		System.out.println("Mouse Exited");
 	}
 
 	/**
