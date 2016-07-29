@@ -3,6 +3,7 @@
  */
 package com.somendu.sample;
 
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
 /**
@@ -16,6 +17,7 @@ import java.awt.image.BufferedImage;
 public class ImageSaver {
 
 	private BufferedImage image;
+	private Dimension dimension;
 
 	/**
 	 * @return the image
@@ -30,6 +32,20 @@ public class ImageSaver {
 	 */
 	public void setImage(BufferedImage image) {
 		this.image = image;
+	}
+
+	/**
+	 * @return the dimension
+	 */
+	public Dimension getDimension() {
+		return dimension;
+	}
+
+	/**
+	 * @param dimension the dimension to set
+	 */
+	public void setDimension(Dimension dimension) {
+		this.dimension = dimension;
 	}
 
 }

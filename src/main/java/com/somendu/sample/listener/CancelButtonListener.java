@@ -59,11 +59,11 @@ public class CancelButtonListener implements MouseListener {
 		imageCaptureRectangle.setImagePlus(imagePlus);
 		imageCaptureRectangle.setImageCanvas(imageCanvas);
 
-		ImageSaver imageCaptureWindow = new ImageSaver();
+		ImageSaver imageSaver = new ImageSaver();
 
-		imageCaptureWindow.setImage(image);
+		imageSaver.setImage(image);
 
-		ImageCropListener mouseListener = new ImageCropListener(imageCaptureRectangle, imageCaptureWindow);
+		ImageCropListener mouseListener = new ImageCropListener(imageCaptureRectangle, imageSaver);
 
 		imageCanvas.addMouseListener(mouseListener);
 
