@@ -31,11 +31,16 @@ public class ImageCaptureSize {
 	private Dimension imageDimension = new Dimension();
 
 	private ImageSaver imageSaver;
+	private ImageCapture imageCapture;
 
-	public ImageCaptureSize(ImageCapture imageCapture, Webcam webcam) {
+	private JFrame jframe = new JFrame("Choose Size of Picture");
+
+	public ImageCaptureSize(ImageCapture imageCapture, ImageSaver imageSaver) {
 
 		this.webcam = webcam;
-		setImageDimension(setCamDimensionUI());
+		this.imageSaver = imageSaver;
+		this.imageCapture = imageCapture;
+		imageSaver.setDimension(setCamDimensionUI());
 	}
 
 	// TODO
@@ -47,10 +52,10 @@ public class ImageCaptureSize {
 
 	private Dimension setCamDimensionUI() {
 
-		JFrame jframe = new JFrame("Choose Size of Picture");
-
 		HashMap<String, Integer> frameLocationMap = ScreenUtility.getCenterCoordinates(jframe);
 		jframe.setLocation(frameLocationMap.get("frameX"), frameLocationMap.get("frameY"));
+
+		Webcam webcam = Webcam.getDefault();
 
 		Dimension[] dimensionArray = webcam.getViewSizes();
 
@@ -67,10 +72,8 @@ public class ImageCaptureSize {
 
 			ImageSaver imageSaver = new ImageSaver();
 
-			DimensionListener dimensionListener = new DimensionListener(this, imageSaver, dimension);
+			DimensionListener dimensionListener = new DimensionListener(jframe, imageCapture, imageSaver, dimension);
 			jButton.addMouseListener(dimensionListener);
-
-			imageDimension = imageSaver.getDimension();
 
 		}
 

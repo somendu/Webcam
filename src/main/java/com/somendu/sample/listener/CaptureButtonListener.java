@@ -40,10 +40,8 @@ public class CaptureButtonListener implements MouseListener {
 
 		System.out.println("Clicked");
 		rectangleImage.getJframe().setVisible(false);
-		ImageCapture imageCapture = new ImageCapture();
+		ImageCapture imageCapture = new ImageCapture(rectangleImage);
 		imageCapture.takePicture();
-
-		rectangleImage.showImageWindow(imageCapture.getImage());
 
 	}
 

@@ -18,9 +18,11 @@ import com.github.sarxos.webcam.Webcam;
 public class ImageCapture {
 
 	private BufferedImage image;
+	private ImageCaptureRectangle rectangleImage;
 
-	public ImageCapture() {
+	public ImageCapture(ImageCaptureRectangle rectangleImage) {
 
+		this.rectangleImage = rectangleImage;
 	}
 
 	/**
@@ -29,8 +31,6 @@ public class ImageCapture {
 	 * @return
 	 */
 	public void takePicture() {
-
-		Webcam webcam = Webcam.getDefault();
 
 		// Incorrect dimension [1280x720] possible ones are [176x144] [320x240]
 		// [640x480]
@@ -41,17 +41,10 @@ public class ImageCapture {
 
 		// webcam.setViewSize(new Dimension(640, 480));
 
-		ImageCaptureSize imageCaptureSize = new ImageCaptureSize(this, webcam);
+		ImageSaver imageSaver = new ImageSaver();
 
-		Dimension imageDimension = imageCaptureSize.getImageSaver().getDimension();
-
-		webcam.setViewSize(imageDimension);
-
-		webcam.open();
-
-		// BufferedImage image = imageCaptureSize.getImage();
-
-		setImage(webcam.getImage());
+		ImageCaptureSize imageCaptureSize = new ImageCaptureSize(this, imageSaver);
+		imageCaptureSize.setImageSaver(imageSaver);
 
 		// TODO Piece of code to use when no webcam is getting used
 		// File file = new File("test.png");
@@ -66,6 +59,22 @@ public class ImageCapture {
 		// setImage(image);
 
 		// webcam.close();
+
+	}
+
+	public void captureDimensionImage(Dimension dimension) {
+
+		Webcam webcam = Webcam.getDefault();
+
+		webcam.setViewSize(dimension);
+
+		webcam.open();
+
+		// BufferedImage image = imageCaptureSize.getImage();
+
+		setImage(webcam.getImage());
+
+		rectangleImage.showImageWindow(webcam.getImage());
 
 	}
 
