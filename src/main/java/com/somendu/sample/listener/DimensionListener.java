@@ -9,10 +9,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
-import com.github.sarxos.webcam.Webcam;
 import com.somendu.sample.ImageCapture;
-import com.somendu.sample.ImageCaptureSize;
-import com.somendu.sample.ImageSaver;
 
 /**
  * <Description>
@@ -23,20 +20,15 @@ import com.somendu.sample.ImageSaver;
  */
 public class DimensionListener implements MouseListener {
 
-	private ImageCaptureSize imageCaptureSize;
-	private ImageSaver imageSaver;
 	private Dimension dimension;
-	private Webcam webcam;
+
 	private ImageCapture imageCapture;
 	private JFrame jFrame;
 
-	public DimensionListener(JFrame jFrame, ImageCapture imageCapture, ImageSaver imagecaptureSize,
-			Dimension dimension) {
+	public DimensionListener(JFrame jFrame, ImageCapture imageCapture, Dimension dimension) {
 
 		this.imageCapture = imageCapture;
-		this.imageSaver = imagecaptureSize;
 		this.dimension = dimension;
-		this.webcam = webcam;
 		this.imageCapture = imageCapture;
 		this.jFrame = jFrame;
 	}

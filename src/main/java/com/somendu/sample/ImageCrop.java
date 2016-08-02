@@ -13,7 +13,7 @@ import ij.process.ImageProcessor;
 /**
  * <Description>
  * 
- * @author Somendu Maiti<smaiti@scan-it.com.sg>
+ * @author Somendu Maiti
  * @since Jul 12, 2016
  * 
  */

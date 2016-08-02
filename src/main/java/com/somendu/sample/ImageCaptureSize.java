@@ -26,21 +26,16 @@ public class ImageCaptureSize {
 
 	private BufferedImage image;
 
-	private Webcam webcam;
-
 	private Dimension imageDimension = new Dimension();
 
-	private ImageSaver imageSaver;
 	private ImageCapture imageCapture;
 
 	private JFrame jframe = new JFrame("Choose Size of Picture");
 
-	public ImageCaptureSize(ImageCapture imageCapture, ImageSaver imageSaver) {
+	public ImageCaptureSize(ImageCapture imageCapture) {
 
-		this.webcam = webcam;
-		this.imageSaver = imageSaver;
 		this.imageCapture = imageCapture;
-		imageSaver.setDimension(setCamDimensionUI());
+
 	}
 
 	// TODO
@@ -50,10 +45,7 @@ public class ImageCaptureSize {
 	// Capture the image
 	// Pass the image to setter
 
-	private Dimension setCamDimensionUI() {
-
-		HashMap<String, Integer> frameLocationMap = ScreenUtility.getCenterCoordinates(jframe);
-		jframe.setLocation(frameLocationMap.get("frameX"), frameLocationMap.get("frameY"));
+	public void setCamDimensionUI() {
 
 		Webcam webcam = Webcam.getDefault();
 
@@ -61,18 +53,19 @@ public class ImageCaptureSize {
 
 		JPanel jPanel = new JPanel();
 
-		Dimension imageDimension = new Dimension();
+		// jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
+
 		for (Dimension dimension : dimensionArray) {
 			double height = dimension.getHeight();
 			double width = dimension.getWidth();
 			JButton jButton = new JButton();
 			jButton.setText((int) width + " x " + (int) height);
+
 			jButton.setVisible(true);
+
 			jPanel.add(jButton);
 
-			ImageSaver imageSaver = new ImageSaver();
-
-			DimensionListener dimensionListener = new DimensionListener(jframe, imageCapture, imageSaver, dimension);
+			DimensionListener dimensionListener = new DimensionListener(jframe, imageCapture, dimension);
 			jButton.addMouseListener(dimensionListener);
 
 		}
@@ -82,7 +75,14 @@ public class ImageCaptureSize {
 		jframe.pack();
 		jframe.setVisible(true);
 
-		return imageDimension;
+		Dimension jFrameDimension = ScreenUtility.getDimension(270, 100);
+		jframe.setSize(jFrameDimension);
+
+		HashMap<String, Integer> frameLocationMap = ScreenUtility.getCenterCoordinates(jframe);
+		jframe.setLocation(frameLocationMap.get("frameX"), frameLocationMap.get("frameY"));
+
+		jframe.setResizable(false);
+
 	}
 
 	/**
@@ -113,21 +113,6 @@ public class ImageCaptureSize {
 	 */
 	public void setImageDimension(Dimension imageDimension) {
 		this.imageDimension = imageDimension;
-	}
-
-	/**
-	 * @return the imageSaver
-	 */
-	public ImageSaver getImageSaver() {
-		return imageSaver;
-	}
-
-	/**
-	 * @param imageSaver
-	 *            the imageSaver to set
-	 */
-	public void setImageSaver(ImageSaver imageSaver) {
-		this.imageSaver = imageSaver;
 	}
 
 }

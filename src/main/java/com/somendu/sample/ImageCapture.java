@@ -32,19 +32,25 @@ public class ImageCapture {
 	 */
 	public void takePicture() {
 
-		// Incorrect dimension [1280x720] possible ones are [176x144] [320x240]
-		// [640x480]
+		ImageCaptureSize imageCaptureSize = new ImageCaptureSize(this);
+		imageCaptureSize.setCamDimensionUI();
 
-		// webcam.setViewSize(new Dimension(176, 144));
+	}
 
-		// webcam.setViewSize(new Dimension(320, 240));
+	/**
+	 * capture the image in dimension
+	 * 
+	 * @param dimension
+	 */
+	public void captureDimensionImage(Dimension dimension) {
 
-		// webcam.setViewSize(new Dimension(640, 480));
+		Webcam webcam = Webcam.getDefault();
 
-		ImageSaver imageSaver = new ImageSaver();
+		webcam.setViewSize(dimension);
 
-		ImageCaptureSize imageCaptureSize = new ImageCaptureSize(this, imageSaver);
-		imageCaptureSize.setImageSaver(imageSaver);
+		webcam.open();
+
+		setImage(webcam.getImage());
 
 		// TODO Piece of code to use when no webcam is getting used
 		// File file = new File("test.png");
@@ -59,20 +65,6 @@ public class ImageCapture {
 		// setImage(image);
 
 		// webcam.close();
-
-	}
-
-	public void captureDimensionImage(Dimension dimension) {
-
-		Webcam webcam = Webcam.getDefault();
-
-		webcam.setViewSize(dimension);
-
-		webcam.open();
-
-		// BufferedImage image = imageCaptureSize.getImage();
-
-		setImage(webcam.getImage());
 
 		rectangleImage.showImageWindow(webcam.getImage());
 
