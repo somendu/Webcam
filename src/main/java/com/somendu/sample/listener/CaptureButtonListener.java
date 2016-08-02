@@ -7,8 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JFrame;
-
 import com.somendu.sample.ImageCapture;
 import com.somendu.sample.ImageCaptureRectangle;
 
@@ -23,12 +21,11 @@ public class CaptureButtonListener implements MouseListener {
 
 	private BufferedImage image;
 	private ImageCaptureRectangle rectangleImage;
-	private JFrame jframe;
 
-	public CaptureButtonListener(ImageCaptureRectangle imageCaptureRectangle, JFrame jframe) {
+	public CaptureButtonListener(ImageCaptureRectangle imageCaptureRectangle) {
 
 		this.rectangleImage = imageCaptureRectangle;
-		this.jframe = jframe;
+
 	}
 
 	/*
@@ -38,7 +35,6 @@ public class CaptureButtonListener implements MouseListener {
 	 */
 	public void mouseClicked(MouseEvent e) {
 
-		System.out.println("Clicked");
 		rectangleImage.getJframe().setVisible(false);
 		ImageCapture imageCapture = new ImageCapture(rectangleImage);
 		imageCapture.takePicture();

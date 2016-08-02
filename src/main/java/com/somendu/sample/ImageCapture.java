@@ -5,8 +5,10 @@ package com.somendu.sample;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import com.github.sarxos.webcam.Webcam;
+import javax.imageio.ImageIO;
 
 /**
  * Capture Class for Image
@@ -32,49 +34,39 @@ public class ImageCapture {
 	 */
 	public void takePicture() {
 
-		// Incorrect dimension [1280x720] possible ones are [176x144] [320x240]
-		// [640x480]
-
-		// webcam.setViewSize(new Dimension(176, 144));
-
-		// webcam.setViewSize(new Dimension(320, 240));
-
-		// webcam.setViewSize(new Dimension(640, 480));
-
-		ImageSaver imageSaver = new ImageSaver();
-
-		ImageCaptureSize imageCaptureSize = new ImageCaptureSize(this, imageSaver);
-		imageCaptureSize.setImageSaver(imageSaver);
-
-		// TODO Piece of code to use when no webcam is getting used
-		// File file = new File("test.png");
-		//
-		// try {
-		// // save image to PNG file
-		// image = ImageIO.read(file);
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		//
-		// setImage(image);
-
-		// webcam.close();
+		ImageCaptureSize imageCaptureSize = new ImageCaptureSize(this);
+		imageCaptureSize.setCamDimensionUI();
 
 	}
 
+	/**
+	 * capture the image in dimension
+	 * 
+	 * @param dimension
+	 */
 	public void captureDimensionImage(Dimension dimension) {
 
-		Webcam webcam = Webcam.getDefault();
+		// Webcam webcam = Webcam.getDefault();
+		//
+		// webcam.setViewSize(dimension);
+		//
+		// webcam.open();
 
-		webcam.setViewSize(dimension);
+		// rectangleImage.showImageWindow(webcam.getImage());
 
-		webcam.open();
+		// webcam.close();
 
-		// BufferedImage image = imageCaptureSize.getImage();
+		// TODO Piece of code to use when no webcam is getting used
+		File file = new File("test.png");
 
-		setImage(webcam.getImage());
+		try {
+			// save image to PNG file
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		rectangleImage.showImageWindow(webcam.getImage());
+		rectangleImage.showImageWindow(image);
 
 	}
 

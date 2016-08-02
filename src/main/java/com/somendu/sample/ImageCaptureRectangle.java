@@ -89,9 +89,11 @@ public class ImageCaptureRectangle {
 		HashMap<String, Integer> frameLocationMap = ScreenUtility.getCenterCoordinates(jframe);
 		jframe.setLocation(frameLocationMap.get("frameX"), frameLocationMap.get("frameY"));
 
-		CaptureButtonListener buttonClickListener = new CaptureButtonListener(this, jframe);
+		CaptureButtonListener buttonClickListener = new CaptureButtonListener(this);
 
 		jButton.addMouseListener(buttonClickListener);
+
+		jframe.setResizable(false);
 
 	}
 
