@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.github.sarxos.webcam.Webcam;
+
 /**
  * Capture Class for Image
  * 
@@ -46,17 +48,14 @@ public class ImageCapture {
 	 */
 	public void captureDimensionImage(Dimension dimension) {
 
-		// Webcam webcam = Webcam.getDefault();
-		//
-		// webcam.setViewSize(dimension);
-		//
-		// webcam.open();
-
-		// rectangleImage.showImageWindow(webcam.getImage());
-
-		// webcam.close();
+		// setCameraImage(dimension);
 
 		// TODO Piece of code to use when no webcam is getting used
+		setCapturedImage();
+
+	}
+
+	private void setCapturedImage() {
 		File file = new File("test.png");
 
 		try {
@@ -67,6 +66,20 @@ public class ImageCapture {
 		}
 
 		rectangleImage.showImageWindow(image);
+
+	}
+
+	private void setCameraImage(Dimension dimension) {
+
+		Webcam webcam = Webcam.getDefault();
+
+		webcam.setViewSize(dimension);
+
+		webcam.open();
+
+		rectangleImage.showImageWindow(webcam.getImage());
+
+		webcam.close();
 
 	}
 
