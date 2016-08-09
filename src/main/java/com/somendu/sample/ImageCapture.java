@@ -48,10 +48,10 @@ public class ImageCapture {
 	 */
 	public void captureDimensionImage(Dimension dimension) {
 
-		// setCameraImage(dimension);
+		setCameraImage(dimension);
 
 		// TODO Piece of code to use when no webcam is getting used
-		setCapturedImage();
+		// setCapturedImage();
 
 	}
 
